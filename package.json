@@ -1,6 +1,6 @@
 {
   "name": "swiss-styl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Minimalist library for Stylus CSS",
   "main": "lib/index.js",
   "scripts": {
