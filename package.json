@@ -2,7 +2,7 @@
   "name": "swiss-styl",
   "version": "0.1.0",
   "description": "Minimalist library for Stylus CSS",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

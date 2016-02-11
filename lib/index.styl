@@ -1,0 +1,31 @@
+
+swiss := {
+  breakpoints: {}
+}
+
+-swiss-add-breakpoint(name, min=0, max=null)
+  bp = swiss.breakpoints[name] = {min: min, max: max}
+  mq = swiss.breakpoints[name]['selectors'] = {}
+
+on(device)
+  warn('Device: "'+device+'" not found as a breakpoint. Make sure you are have added it via -swiss-add-breakpoint()') unless device in swiss.breakpoints
+  slctr = selector()
+  selectors = swiss.breakpoints[device].selectors
+  if not slctr in selectors
+    selectors[slctr] = block
+  else
+    push(selectors[slctr], block)
+
+-swiss-render()
+  breakpoints = swiss.breakpoints
+  for bp, type in breakpoints
+    media = 'screen'
+    if type.min > 0
+      media = media + ' and (min-width: %s)' % type.min
+    if type.max not null
+      media = media + ' and (max-width: %s)' % type.max
+    @media media
+      for selector, block in type.selectors
+        {selector}
+          for rule in block
+            {rule}
